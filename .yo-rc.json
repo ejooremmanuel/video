@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "video",
+    "libraryId": "0d893555-2282-4ef4-80f6-beacb5d939ec",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "video",
+    "solutionShortDescription": "video description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
