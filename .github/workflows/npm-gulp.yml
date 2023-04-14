@@ -48,6 +48,7 @@ jobs:
         with:
           # authType: certificate
           APP_ID: ${{ secrets.APP_ID }}
+          CERTIFICATE_ENCODED: 0ue8Q~TWf.WDRKSB3avOiVqxzG433fQl0mvXwaXf
           TENANT: 39dab133-5d7b-4bec-8eca-7f89b173e27f
         #  ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
         # ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
