@@ -10,12 +10,16 @@ type Props = {
   pageContext: PageContext;
 };
 
+//performing a check
+
 export const VideoList: FC<Props> = ({ context, pageContext }) => {
   const [current, setCurrent] = useState(0);
   const { data, isLoading } = useGetVideosList();
 
   const handleNext = () => {
     if (current + 1 === data.length) return;
+    console.log("here...");
+
     setCurrent(current + 1);
   };
   const handlePrev = () => {
