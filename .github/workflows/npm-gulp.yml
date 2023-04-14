@@ -30,6 +30,10 @@ jobs:
       - name: Run npm ci
         run: npm ci
 
+      # show secret
+      - name: Show Username
+        run: echo ${{ secrets.ADMIN_USERNAME }}
+
       # install gulp if mac
       - name: Run npm i -g gulp
         run: npm i -g gulp
@@ -44,7 +48,8 @@ jobs:
 
       # Login to tenant using action-cli-login
       - name: Office 365 CLI Login
-        uses: pnp/action-cli-login@v1.0.0
+        uses: pnp/action-cli-login@v2.2.1
+
         with:
           ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
