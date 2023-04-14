@@ -46,16 +46,26 @@ jobs:
       - name: Office 365 CLI Login
         uses: pnp/action-cli-login@v1.0.0
         with:
-          ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
-          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          APP_ID: ${{ secrets.APP_ID }}
+        #  ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
+        # ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
 
-      # Deploy package to tenant using action-cli-deploy
-      - name: Office 365 CLI Deploy
-        uses: pnp/action-cli-deploy@v1.0.0
+      #Deploy app to SITE Collection
+      - name: Deploy to Site Collection
+        id: M365clideploy
+        uses: pnp/action-cli-deploy@v3.0.1
         with:
           APP_FILE_PATH: sharepoint/solution/${{ env.SPPKG_FILE_NAME }}
-          # SKIP_FEATURE_DEPLOYMENT: true
-          OVERWRITE: true
+          SCOPE: sitecollection
+          SITE_COLLECTION_URL: https://lotusbetaanalytics.sharepoint.com/sites/LandingPage
+
+      # Deploy package to tenant using action-cli-deploy
+      # - name: Office 365 CLI Deploy
+      # uses: pnp/action-cli-deploy@v1.0.0
+      # with:
+      #   APP_FILE_PATH: sharepoint/solution/${{ env.SPPKG_FILE_NAME }}
+      # SKIP_FEATURE_DEPLOYMENT: true
+      #  OVERWRITE: true
 
       # Send an email using action-cli-runscript
       - name: Office 365 CLI Send email
