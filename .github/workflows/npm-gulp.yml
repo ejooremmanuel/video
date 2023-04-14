@@ -8,7 +8,7 @@ on:
 
 # Variables that are available for all the jobs in the workflow
 env:
-  SPPKG_FILE_NAME: "package-name.sppkg"
+  SPPKG_FILE_NAME: "video.sppkg"
   SEND_MAIL: "true"
 
 jobs:
