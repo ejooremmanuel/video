@@ -1,4 +1,4 @@
-name: NodeJS with Gulp
+name: SPFx CICD with Office 365 CLI
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 # Variables that are available for all the jobs in the workflow
 env:
-  SPPKG_FILE_NAME: "video.sppkg"
+  SPPKG_FILE_NAME: "package-name.sppkg"
   SEND_MAIL: "true"
 
 jobs:
@@ -38,37 +38,23 @@ jobs:
       # gulp bundle and package solution
       - name: Bundle and package
         run: |
-          gulp bundle
           gulp bundle --ship
           gulp package-solution --ship
 
       # Login to tenant using action-cli-login
-      # - name: Office 365 CLI Login
-      # uses: pnp/action-cli-login@v2.2.1
-      # with:
-      # authType: certificate
-      # APP_ID: ${{ secrets.APP_ID }}
-      # CERTIFICATE_ENCODED: 0ue8Q~TWf.WDRKSB3avOiVqxzG433fQl0mvXwaXf
-      # TENANT: 39dab133-5d7b-4bec-8eca-7f89b173e27f
-      #  ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
-      # ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-
-      #Deploy app to SITE Collection
-      - name: Deploy to Site Collection
-        id: M365clideploy
-        uses: pnp/action-cli-deploy@v3.0.1
+      - name: Office 365 CLI Login
+        uses: pnp/action-cli-login@v1.0.0
         with:
-          APP_FILE_PATH: sharepoint/solution/${{ env.SPPKG_FILE_NAME }}
-          SCOPE: sitecollection
-          SITE_COLLECTION_URL: https://lotusbetaanalytics.sharepoint.com/sites/LandingPage
+          ADMIN_USERNAME: ${{ secrets.adminUsername }}
+          ADMIN_PASSWORD: ${{ secrets.adminPassword }}
 
       # Deploy package to tenant using action-cli-deploy
-      # - name: Office 365 CLI Deploy
-      # uses: pnp/action-cli-deploy@v1.0.0
-      # with:
-      #   APP_FILE_PATH: sharepoint/solution/${{ env.SPPKG_FILE_NAME }}
-      # SKIP_FEATURE_DEPLOYMENT: true
-      #  OVERWRITE: true
+      - name: Office 365 CLI Deploy
+        uses: pnp/action-cli-deploy@v1.0.0
+        with:
+          APP_FILE_PATH: sharepoint/solution/${{ env.SPPKG_FILE_NAME }}
+          # SKIP_FEATURE_DEPLOYMENT: true
+          # OVERWRITE: true
 
       # Send an email using action-cli-runscript
       - name: Office 365 CLI Send email
