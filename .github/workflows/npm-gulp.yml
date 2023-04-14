@@ -43,12 +43,12 @@ jobs:
           gulp package-solution --ship
 
       # Login to tenant using action-cli-login
-      - name: Office 365 CLI Login
-        uses: pnp/action-cli-login@v1.0.0
-        with:
-          APP_ID: ${{ secrets.APP_ID }}
-        #  ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
-        # ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      # - name: Office 365 CLI Login
+      # uses: pnp/action-cli-login@v1.0.0
+      # with:
+      # APP_ID: ${{ secrets.APP_ID }}
+      #  ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
+      # ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
 
       #Deploy app to SITE Collection
       - name: Deploy to Site Collection
